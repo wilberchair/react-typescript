@@ -1,3 +1,4 @@
+import Header from './components/Header'
 
 const App = () => {
   let name: string = 'wilber';
@@ -17,6 +18,7 @@ const App = () => {
   
   return (
     <>
+      <Header/>
       <div>
         Olá {name}, tudo bem?
       </div>
