@@ -18,7 +18,9 @@ const App = () => {
   
   return (
     <>
-      <Header/>
+      <Header title='Título da minha página!' subtitle='Subtítulo da minha página'/>
+      <Header title='Outro texto!'/>
+      <Header />
       <div>
         Olá {name}, tudo bem?
       </div>
