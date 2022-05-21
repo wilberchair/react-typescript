@@ -1,42 +1,16 @@
-import Header from './components/Header'
-import { Photo } from './components/Photo'
-
 const App = () => {
-  let name: string = 'wilber';
-  let lastName: string = 'lima'
-  let n1: number = 12;
-  let n2: number = 3;
-  let link: string = 'https://b7web.com.br'
 
-
-  function somar(n1: number, n2: number): number {
-    return n1 + n2;
-  }
-
-  function maiuscula(texto: string) {
-    return texto.charAt(0).toUpperCase() + texto.substr(1);
-  }
+  //Se eu criar uma funcao para usar no evento, eu so passso a referencia
+  //Agora se eu nao quiser, é só criar uma funcao anonima e executar ela direto no onClick
   
+  const handleClick = () => {
+    return alert('Cliquei');
+  }
+
   return (
-    <>
-      <Header title='Título da minha página!' subtitle='Subtítulo da minha página'/>
-      <Header title='Outro texto!'/>
-      <Header />
-      <Photo legend='google'>
-        <img src='https://www.google.com.br/google.jpg' alt="" />
-      </Photo>
-      <div>
-        Olá {name}, tudo bem?
-      </div>
-      <div>
-        Multiplicação: {n1 * n2}
-        Soma: {somar(n1, n2)}
-      </div>
-      <div>
-        {`${maiuscula(name)} ${maiuscula(lastName)}`}
-      </div>
-      <a href={link}>Clique aqui para acessar</a>
-    </>
+    //caso nao tenha unma funcao para passar a referencia no evento, crio uma funcao para executar
+    // <button onClick={() => alert('Oi')}>Clique aqui</button>
+    <button onClick={handleClick}>Clique aqui</button>
   )
 }
 
