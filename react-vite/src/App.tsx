@@ -1,4 +1,5 @@
 import Header from './components/Header'
+import { Photo } from './components/Photo'
 
 const App = () => {
   let name: string = 'wilber';
@@ -21,6 +22,9 @@ const App = () => {
       <Header title='Título da minha página!' subtitle='Subtítulo da minha página'/>
       <Header title='Outro texto!'/>
       <Header />
+      <Photo legend='google'>
+        <img src='https://www.google.com.br/google.jpg' alt="" />
+      </Photo>
       <div>
         Olá {name}, tudo bem?
       </div>
