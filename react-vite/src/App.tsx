@@ -1,21 +1,22 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const App = () => {
-  let [numero, setNumero] = useState(0)
-  
-  const handleMore = () => {
-    setNumero(numero + 1);
-  }
+  let [name, setName] = useState('')
 
-  const handleMinus = () => {
-    setNumero(numero - 1)
+  //aqui especifico que se trata de um input element
+  //Esse é o type para um item do formulario que teve algum evento: React.FormEvent<HTMLInputElement>
+  //se quiser diretamente o de modificação usamos o ChangeEvent
+  const changeName = ( event: React.ChangeEvent<HTMLInputElement> ) => {
+    setName( event?.target.value )
   }
+  
 
   return (
     <div>
-      <button onClick={handleMore}>+</button>
-      <div>{numero}</div>
-      <button onClick={handleMinus}>-</button>
+      Nome:
+      <input type="text" onChange={ changeName } />
+      <hr/>
+      Seu nome é: {name}
     </div>
   )
 }
