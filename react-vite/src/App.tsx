@@ -1,14 +1,20 @@
-import { Button } from './components/Button'
-import React, { useState } from 'react'
+import { Pessoa } from './components/Pessoa'
 
 const App = () => {
-  let textButton = 'Clicar no Botão'
-
-  const buttonEventAction = (txt: string) => {
-    alert('Frase do App: ' +txt)
-  }
+  let list = [
+    {name: 'Wilber', age: 34},
+    {name: 'Cristielly', age: 29},
+    {name: 'Mariana', age: 4},
+    {name: 'Pedro', age: 15}
+  ]
   return (
-    <Button text={textButton} clickFn={buttonEventAction} />
+    <div>
+      <ul>
+        {list.map((item, index) => (
+          <Pessoa key={index} data={item} />
+        ))}
+      </ul>
+    </div>
   )
 }
 
