@@ -1,19 +1,16 @@
-import { Pessoa } from './components/Pessoa'
+import { useState } from 'react'
 
 const App = () => {
-  let list = [
-    {name: 'Wilber', age: 34},
-    {name: 'Cristielly', age: 29},
-    {name: 'Mariana', age: 4},
-    {name: 'Pedro', age: 15}
-  ]
+  const [show, setShow] = useState(false)
+
+  const handleClick = () => {
+    setShow(!show)
+  }
+  
   return (
     <div>
-      <ul>
-        {list.map((item, index) => (
-          <Pessoa key={index} data={item} />
-        ))}
-      </ul>
+      <button onClick={handleClick}>{show ? 'ocultar' : 'Mostrar'}</button>
+      {show && <div>Bla bla bla!</div>}
     </div>
   )
 }
