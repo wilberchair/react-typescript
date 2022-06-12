@@ -1,16 +1,13 @@
 import { useState } from 'react'
 
 const App = () => {
-  const [show, setShow] = useState(false)
-
-  const handleClick = () => {
-    setShow(!show)
-  }
-  
   return (
     <div>
-      <button onClick={handleClick}>{show ? 'ocultar' : 'Mostrar'}</button>
-      {show && <div>Bla bla bla!</div>}
+      <button style={{
+        backgroundColor: '#FF0000',
+        color: '#FFF',
+        border: 0
+      }}>Clique Aqui</button>
     </div>
   )
 }
