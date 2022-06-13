@@ -1,23 +1,12 @@
-import { useState } from 'react'
+// import { useState } from 'react'
+import './style.css'
+import { Botao } from './components/Botao'
 
 const App = () => {
-  // const [color, setColor] = useState('#FF0000')
-  const [padding, setPadding] = useState(0)
-
-  // const handleClick = () => {
-  //   setColor('#00FF00')
-  // }
-  const handleClick = () => {
-    setPadding(20)
-  }
   return (
     <div>
-      <button onClick={handleClick} style={{
-        backgroundColor: '#FF0000',
-        color: '#FFF',
-        border: 0,
-        padding
-      }}>Clique Aqui</button>
+      {/* <button className='botao'>Clique Aqui</button> */}
+      <Botao />
     </div>
   )
 }
