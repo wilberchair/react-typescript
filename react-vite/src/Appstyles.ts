@@ -7,7 +7,19 @@ export const Container = styled.div<ContainerProps>`
   background-color: ${props => props.bgColor};
   color: white;
   display: flex;
-  padding: 20px
+  padding: 20px;
+
+  span {
+    font-weight: bold;
+  }
+
+  .link {
+    color: purple;
+
+    &:hover {
+      color: green;
+    }
+  }
 `;
 
 type ButtonProps = {

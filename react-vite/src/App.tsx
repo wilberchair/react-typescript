@@ -4,7 +4,8 @@ import * as C from './Appstyles';
 const App = () => {
   return (
     <C.Container bgColor={'#BBC'}>
-      Texto do componente
+      <span>Texto do componente</span>
+      <a href='https://google.com' className='link'>Clique aqui</a>
       <C.Button bg={'#FF0'} small>Clique aqui</C.Button>
       <C.Button bg={'#F52'}>Clique aqui</C.Button>
     </C.Container>
