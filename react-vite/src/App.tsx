@@ -3,8 +3,10 @@ import * as C from './Appstyles';
 
 const App = () => {
   return (
-    <C.Container>
-      <C.Button>Clique aqui</C.Button>
+    <C.Container bgColor={'#BBC'}>
+      Texto do componente
+      <C.Button bg={'#FF0'} small>Clique aqui</C.Button>
+      <C.Button bg={'#F52'}>Clique aqui</C.Button>
     </C.Container>
   )
 }
