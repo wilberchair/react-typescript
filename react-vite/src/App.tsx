@@ -1,13 +1,11 @@
 // import { useState } from 'react'
-import './style.css'
-import { Botao } from './components/Botao'
+import * as C from './Appstyles';
 
 const App = () => {
   return (
-    <div>
-      {/* <button className='botao'>Clique Aqui</button> */}
-      <Botao />
-    </div>
+    <C.Container>
+      <C.Button>Clique aqui</C.Button>
+    </C.Container>
   )
 }
 
