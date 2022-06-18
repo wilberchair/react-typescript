@@ -1,9 +1,9 @@
-.botao-square {
+.square {
   background-color: #FF0000;
   padding: 30px;
 }
 
-.botao-bnt {
+.btn {
   background-color: blue;
   color: #FFF;
   border: 2px solid #000;
@@ -11,6 +11,6 @@
   border-radius: 20px;
 }
 
-.botao-legend {
+.legend {
   color: #00FF00;
 }
