@@ -60,6 +60,14 @@ body {
 }
 
 .container .rightSide {
+  display: flex;
   flex: 1;
   margin-left: 40px;
+}
+
+.container .rightSide .grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
