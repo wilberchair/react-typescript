@@ -76,3 +76,22 @@ body {
   flex: 1;
   display: flex;
 }
+
+.container .rightSide .rightArrow {
+  align-items: center;
+  background-color: #227C9D;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 70px;
+  margin-left: -35px;
+  margin-top: 145px;
+  justify-content: center;
+  position: absolute;
+  transition: all ease .3s;
+  width: 70px;
+}
+
+.container .rightSide .rightArrow:hover {
+  opacity: .8;
+}

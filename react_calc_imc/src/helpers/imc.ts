@@ -3,7 +3,7 @@ export type Level = {
   color: string;
   icon: 'down' | 'up';
   imc: number[];
-  yourImc?: number; 
+  yourImc?: number;
 }
 
 export const levels: Level[] = [
@@ -14,14 +14,17 @@ export const levels: Level[] = [
 ]
 
 export const calculateImc = (height: number, weight: number) => {
-  const imc = weight / (weight * height);
+  // const imc = Math.round((weight / (height * height)) * 10) / 10;
+  // const imc = Math.round(weight / (height * height));
+  const imc = weight / (height * height);
+  console.log('IMCCC', imc)
 
   for(let i in levels) {
-    if(imc > levels[i].imc[0] && imc < levels[i].imc[1]) {
-      levels[i].yourImc = imc;
-      return levels[i];
-    }
-
+    if(imc >= levels[i].imc[0] && imc <= levels[i].imc[1]) {
+      let levelCopy: Level = {...levels[i]}
+      levelCopy.yourImc = parseFloat(imc.toFixed(2));
+      return levelCopy;
+    } 
     return null;
   }
 }
