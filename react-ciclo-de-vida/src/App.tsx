@@ -10,14 +10,23 @@ const App = () => {
   //   loadMovies()
   // }, [])
 
-  const loadMovies = () => {
-    fetch('https://api.b7web.com.br/cinema/')
-      .then((response)=>{
-        return response.json();
-      }).then((json)=>{
-        setMovies(json)
-      })
+  //fetch tradicional.. e embaixo da forma mais simples com async await
+  // const loadMovies = () => {
+  //   fetch('https://api.b7web.com.br/cinema/')
+  //     .then((response)=>{
+  //       return response.json();
+  //     }).then((json)=>{
+  //       setMovies(json)
+  //     })
+  // }
+
+  const loadMovies = async () => {
+    const response = await fetch('https://api.b7web.com.br/cinema/')
+    const json = await response.json()  
+    
+    setMovies(json)
   }
+
   return (
     <div className="App">
       <button className='button-movie' onClick={loadMovies}>Carregar Filmes...</button>
