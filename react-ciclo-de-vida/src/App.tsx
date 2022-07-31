@@ -1,28 +1,35 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
+import { Movie } from './types/Movie'
 
 const App = () => {
-  const [name, setName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [fullName, setFullName] = useState('')
+  const [movies, setMovies] = useState<Movie[]>([])
+ 
+  //caso eu queira carregar os filmes logo que a tela carregar!
+  // useEffect(()=>{
+  //   loadMovies()
+  // }, [])
 
-  useEffect(() => {
-    setFullName(`${name} ${lastName}`)
-  }, [name, lastName])
-  
-  const handleChangeName = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const loadMovies = () => {
+    fetch('https://api.b7web.com.br/cinema/')
+      .then((response)=>{
+        return response.json();
+      }).then((json)=>{
+        setMovies(json)
+      })
   }
-
-  const handleChangeLastName = (event: ChangeEvent<HTMLInputElement>) => {
-    setLastName(event.target.value);
-  }
-
   return (
     <div className="App">
-      <input type="text" placeholder='Digite seu NOME' value={name} onChange={handleChangeName}/>
-      <input type="text" placeholder='Digite seu SOBRENOME' value={lastName} onChange={handleChangeLastName}/>
-      <p>Nome completo: {fullName}</p>
+      <button className='button-movie' onClick={loadMovies}>Carregar Filmes...</button>
+      Total de Filmes: {movies.length}
+      <div className='movies-block'>
+        {movies.map((movie, index)=>(
+          <div className='movies'>
+            <p key={index} className='movies-title'>{movie.titulo}</p>
+            <img className='movies-image' src={movie.avatar} alt={movie.titulo} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

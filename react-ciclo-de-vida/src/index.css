@@ -12,9 +12,26 @@ code {
     monospace;
 }
 
-.mari {
-  background-color: aquamarine;
+.button-movie {
+  background-color: greenyellow;
   color: rgb(61, 143, 219);
   font-weight: bold;
-  font-size: 24px;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.movies-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 3;
+}
+
+.movies-title {
+  font-weight: bold;
+}
+
+.movies-image {
+  width: 200px;
 }
