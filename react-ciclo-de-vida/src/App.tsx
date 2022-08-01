@@ -11,28 +11,42 @@ const App = () => {
     loadMovies()
   }, [])
 
-  //fetch tradicional.. e embaixo da forma mais simples com async await
+  // fetch tradicional.. e embaixo da forma mais simples com async await
   // const loadMovies = () => {
   //   fetch('https://api.b7web.com.br/cinema/')
   //     .then((response)=>{
   //       return response.json();
   //     }).then((json)=>{
   //       setMovies(json)
+  //     }).catch((e)=>{
+  //       setLoading(false)
+  //       setMovies([])
+  //       console.error(e)
   //     })
   // }
 
   const loadMovies = async () => {
-    setLoading(true)
-    const response = await fetch('https://api.b7web.com.br/cinema/')
-    const json = await response.json()  
-    setLoading(false)
-    setMovies(json)
+    try{
+      setLoading(true)
+      const response = await fetch('https://api.b7web.com.br/cinema')
+      const json = await response.json()  
+      setLoading(false)
+      setMovies(json)
+    } catch(e) {
+      setLoading(false);
+      setMovies([])
+      console.error(e);
+    }
   }
 
   return (
     <div className="App">
       {/* <button className='button-movie' onClick={loadMovies}>Carregar Filmes...</button> */}
-      {!loading &&
+      {loading &&
+        <div>Carregando...</div>
+      }
+
+      {!loading && movies.length > 0 &&
         <>
           <div>Total de Filmes: {movies.length}</div>
           <div className='movies-block'>
@@ -46,8 +60,8 @@ const App = () => {
         </>
       }
 
-      {loading &&
-        <div>Carregando...</div>
+      {!loading && movies.length === 0 &&
+        <div>Tente mais tarde novamente.</div>
       }
     </div>
   );
