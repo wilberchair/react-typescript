@@ -1,42 +1,21 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { Movie } from './types/Movie'
+// import { Movie } from './types/Movie'
+import { Post } from './types/Post'
 
 const App = () => {
-  const [movies, setMovies] = useState<Movie[]>([])
+  const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(false)
  
   //caso eu queira carregar os filmes logo que a tela carregar!
   useEffect(()=>{
-    loadMovies()
+    loadPosts()
   }, [])
 
-  // fetch tradicional.. e embaixo da forma mais simples com async await
-  // const loadMovies = () => {
-  //   fetch('https://api.b7web.com.br/cinema/')
-  //     .then((response)=>{
-  //       return response.json();
-  //     }).then((json)=>{
-  //       setMovies(json)
-  //     }).catch((e)=>{
-  //       setLoading(false)
-  //       setMovies([])
-  //       console.error(e)
-  //     })
-  // }
-
-  const loadMovies = async () => {
-    try{
-      setLoading(true)
-      const response = await fetch('https://api.b7web.com.br/cinema')
-      const json = await response.json()  
-      setLoading(false)
-      setMovies(json)
-    } catch(e) {
-      setLoading(false);
-      setMovies([])
-      console.error(e);
-    }
+  const loadPosts = async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+    const json = await response.json();
+    setPosts(json)
   }
 
   return (
@@ -46,22 +25,23 @@ const App = () => {
         <div>Carregando...</div>
       }
 
-      {!loading && movies.length > 0 &&
+      {!loading && posts.length > 0 &&
         <>
-          <div>Total de Filmes: {movies.length}</div>
-          <div className='movies-block'>
-            {movies.map((movie, index)=>(
-              <div key={index} className='movies'>
-                <p className='movies-title'>{movie.titulo}</p>
-                <img className='movies-image' src={movie.avatar} alt={movie.titulo} />
+          <div>Total de Posts: {posts.length}</div>
+          <div>
+            {posts.map((post, index)=>(
+              <div key={index} className='posts'>
+                <h4>{post.title}</h4>
+                <small>#{post.id} - Usuário: {post.userId}</small>
+                <p>{post.body}</p>
               </div>
             ))}
           </div>
         </>
       }
 
-      {!loading && movies.length === 0 &&
-        <div>Tente mais tarde novamente.</div>
+      {!loading && posts.length === 0 &&
+        <div>Não há posts para exibir.</div>
       }
     </div>
   );
