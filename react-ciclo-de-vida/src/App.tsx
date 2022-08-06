@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-// import { Movie } from './types/Movie'
 import { Post } from './types/Post'
+import { PostItem } from './components/PostItem'
+import { PostForm } from './components/PostForm'
 
 const App = () => {
   const [posts, setPosts] = useState<Post[]>([])
@@ -20,6 +21,24 @@ const App = () => {
     setPosts(json)
   }
 
+  const handleAddPost = async (title: string, body: string) => {
+    let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({ title, body, userId: 1 }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      let json = await response.json()
+      
+      if(json.id) {
+        alert('Post adicionado com sucesso!')
+      } else {
+        alert('Ocorreu algum erro!')
+      }
+  }
+
   return (
     <div className="App">
       {/* <button className='button-movie' onClick={loadMovies}>Carregar Filmes...</button> */}
@@ -27,16 +46,14 @@ const App = () => {
         <div>Carregando...</div>
       }
 
+      <PostForm onAdd={handleAddPost} />
+
       {!loading && posts.length > 0 &&
         <>
           <div>Total de Posts: {posts.length}</div>
           <div>
             {posts.map((post, index)=>(
-              <div key={index} className='posts'>
-                <h4>{post.title}</h4>
-                <small>#{post.id} - Usuário: {post.userId}</small>
-                <p>{post.body}</p>
-              </div>
+              <PostItem key={index} data={post} />
             ))}
           </div>
         </>

@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.fieldset {
+  display: flex;
+  margin-bottom: 30px;
+}
+
 .posts {
   margin: 20px auto;
 }
