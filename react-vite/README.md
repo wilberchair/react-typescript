@@ -20,3 +20,10 @@ comando: npx create-react-app
 E para criar um projeto usando typescript fazemos da seguinte forma
 create-react-app react-primeiro --template typescript
 
+
+Reducers = Tem o mesmo papel do state, mas serve para fins mais complexos.
+Quando você quer modificar listas, não um valor único. Um array de strings por ex
+ora vc quer add coisas nessa lista, limpar, ordenar de forma diferente... etc
+qd tem um objeto que tem varios valores nesse objeto, adicionar novos valores... etc
+
+
