@@ -12,17 +12,5 @@ export const api = {
       title, body, userId
     })
     return response.data;
-    
-    // let response = await fetch(`${BASE}/posts`, {
-    //   method: 'POST',
-    //   body: JSON.stringify({ title, body, userId }),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
-
-    // const json = await response.json();
-    
-    // return json;
   }
 }
