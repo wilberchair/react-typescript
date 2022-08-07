@@ -1,61 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useReducer } from 'react'
 import './App.css';
-import { Post } from './types/Post'
-import { PostItem } from './components/PostItem'
-import { PostForm } from './components/PostForm'
-import { api } from './api'
+
+type reducerState = {
+  count: number;
+}
+
+type reducerAction = {
+  type: string;
+}
+
+const initialState = { count: 0 }
+
+const reducer = (state: reducerState, action: reducerAction) => {
+  switch(action.type) {
+    case 'ADD':
+      return { ...state, count: state.count + 1 };
+    break;
+
+    case 'DEL':
+      if(state.count > 0) {
+        return { ...state, count: state.count - 1 };
+      }
+    break;
+    
+    case 'RESET':
+      return initialState;
+    break;
+  }
+  return state;
+}
 
 const App = () => {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [loading, setLoading] = useState(false)
- 
-  //caso eu queira carregar os filmes logo que a tela carregar!
-  useEffect(()=>{
-    loadPosts()
-  }, [])
-
-  const loadPosts = async () => {
-    setLoading(true)
-    let json = await api.getAllPosts()
-    setLoading(false)
-    setPosts(json)
-  }
-
-  const handleAddPost = async (title: string, body: string) => {
-    let json = await api.addNewPost(title, body, 1)
-    
-    if(json.id) {
-      alert('Post adicionado com sucesso!')
-    } else {
-      alert('Ocorreu algum erro!')
-    }  
-  }
-
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div className="App">
-      {/* <button className='button-movie' onClick={loadMovies}>Carregar Filmes...</button> */}
-      {loading &&
-        <div>Carregando...</div>
-      }
-
-      <PostForm onAdd={handleAddPost} />
-
-      {!loading && posts.length > 0 &&
-        <>
-          <div>Total de Posts: {posts.length}</div>
-          <div>
-            {posts.map((post, index)=>(
-              <PostItem key={index} data={post} />
-            ))}
-          </div>
-        </>
-      }
-
-      {!loading && posts.length === 0 &&
-        <div>Não há posts para exibir.</div>
-      }
+      Contagem: {state.count}
+      <hr />
+      <button onClick={()=> dispatch({type: 'ADD'})}>Adicionar</button>
+      <button onClick={()=> dispatch({type: 'DEL'})}>Remover</button>
+      <button onClick={()=> dispatch({type: 'RESET'})}>Resetar</button>
     </div>
-  );
+  )
 }
 
 export default App;
