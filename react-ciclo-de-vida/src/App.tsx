@@ -27,11 +27,23 @@ const App = () => {
       payload: { id }
     })
   }
+
+  const handleOrderButton = () => {
+    dispatch({
+      type: 'ORDER'
+    })
+  }
   
   return (
     <div className="App">
       <input type="text" value={nameInput} onChange={handleInputChange} />
       <button onClick={handleAddButton}>Adicionar</button>
+
+      <hr />
+
+      <button onClick={handleOrderButton}>Ordenar</button>
+      <br />
+
       Lista de Pessoas:
       <ul>
         {list.map((item, index) => (
