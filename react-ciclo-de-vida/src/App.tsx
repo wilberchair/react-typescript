@@ -20,6 +20,13 @@ const App = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNameInput(e.target.value)
   }
+
+  const deletePerson = (id: string) => {
+    dispatch({
+      type: 'DEL',
+      payload: { id }
+    })
+  }
   
   return (
     <div className="App">
@@ -28,7 +35,10 @@ const App = () => {
       Lista de Pessoas:
       <ul>
         {list.map((item, index) => (
-          <li key={index}>{item.name}</li>
+          <li key={index}>
+            {item.name}
+            <button onClick={() => deletePerson(item.id)}>[ deletar ]</button>
+          </li>
         ))}
       </ul>
     </div>
