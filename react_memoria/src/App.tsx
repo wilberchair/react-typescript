@@ -5,6 +5,7 @@ import RestartIcon from './svgs/restart.svg'
 import { Button } from './components/Button'
 import { InfoItem } from './components/InfoItem'
 import { GridItemType } from './types/GridTypes'
+import { items } from './data/items'
 
 const App = () => {
   const [playing, setPlaying] = useState<boolean>(false);
@@ -18,7 +19,16 @@ const App = () => {
   },[])
 
   const resetAndCreateGrid = () => {
+    setTimeElapsed(0);
+    setMoveCount(0);
+    setShowCount(0);
+    
+    let tmpGrid: GridItemType[] = [];
+    for(let i = 0; i < (items.length * 2); i ++) tmpGrid.push({ item: null, show: false, permanentShow: false })
 
+    setGridItems(tmpGrid);
+
+    setPlaying(true);
   }
   
   return (
