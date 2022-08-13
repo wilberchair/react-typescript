@@ -4,12 +4,14 @@ import logoImage from './assets/devmemory_logo.png'
 import RestartIcon from './svgs/restart.svg'
 import { Button } from './components/Button'
 import { InfoItem } from './components/InfoItem'
+import { GridItemType } from './types/GridTypes'
 
 const App = () => {
   const [playing, setPlaying] = useState<boolean>(false);
   const [timeElapsed, setTimeElapsed] = useState<number>(0);
   const [moveCount, setMoveCount] = useState<number>(0);
   const [showCount, setShowCount] = useState<number>(0);
+  const [gridItems, setGridItems] = useState<GridItemType[]>([])
 
   useEffect(()=>{
     resetAndCreateGrid()
